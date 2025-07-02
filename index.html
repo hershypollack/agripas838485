@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    input, button { font-size: 1.2em; margin: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Enter Access Code</h1>
+  <input type="text" id="codeInput" placeholder="Enter code here">
+  <button onclick="checkCode()">Login</button>
+
+  <script>
+    function checkCode() {
+      const code = document.getElementById("codeInput").value;
+      if (code === "1234") {
+        localStorage.setItem("access", "full");
+        window.location.href = "menu.html";
+      } else if (code === "5678") {
+        localStorage.setItem("access", "limited");
+        window.location.href = "limited.html";
+      } else {
+        alert("Invalid code.");
+      }
+    }
+  </script>
+</body>
+</html>

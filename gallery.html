@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gallery</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; }
+    input { margin: 10px; }
+    img, video { max-width: 200px; margin: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Full Gallery</h1>
+  <input type="file" accept="image/*,video/*" multiple onchange="previewFiles(event)">
+  <div id="gallery"></div>
+
+  <script>
+    if (localStorage.getItem("access") !== "full") {
+      alert("No access");
+      window.location.href = "index.html";
+    }
+
+    function previewFiles(event) {
+      const files = event.target.files;
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = "";
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          if (file.type.startsWith("image")) {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            gallery.appendChild(img);
+          } else if (file.type.startsWith("video")) {
+            const video = document.createElement("video");
+            video.src = e.target.result;
+            video.controls = true;
+            gallery.appendChild(video);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>

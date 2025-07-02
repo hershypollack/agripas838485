@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main Menu</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    a { display: block; margin: 20px; font-size: 1.5em; }
+  </style>
+</head>
+<body>
+  <h1>Welcome!</h1>
+  <a href="gallery.html">Gallery</a>
+  <a href="chat.html">Chat</a>
+
+  <script>
+    if (localStorage.getItem("access") !== "full") {
+      alert("No access");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
